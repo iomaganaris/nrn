@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="degradable_buffer" href="degradable_buffer.html" />
-    <link rel="prev" title="Restricting reactions to certain sections" href="Restricting%20reactions%20to%20certain%20sections.html" /> 
+    <link rel="next" title="combining currents from mod files with rxd" href="combining%20currents%20from%20mod%20files%20with%20rxd.html" />
+    <link rel="prev" title="calcium waves" href="calcium%20waves.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,16 +97,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../hoc/index.html">NEURON HOC documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Python tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Python RXD tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Calcium%20Waves.html">Calcium Waves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Changing%20initial%20conditions%20and%20parameters.html">Changing initial conditions and parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Combining%20currents%20from%20mod%20files%20with%20rxd.html">Combining currents from mod files with rxd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Reaction-Diffusion%20tutorial.html">Reaction-Diffusion tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Restricting%20reactions%20to%20certain%20sections.html">Restricting reactions to certain sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic-initialization.html">basic-initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calcium%20waves.html">calcium waves</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">circadian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combining%20currents%20from%20mod%20files%20with%20rxd.html">combining currents from mod files with rxd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="degradable_buffer.html">degradable_buffer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extracellular.html">extracellular</a></li>
-<li class="toctree-l2"><a class="reference internal" href="initialization.html">initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ion-channels.html">ion-channels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ip3-demo.html">ip3-demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="thresholds.html">thresholds</a></li>
 </ul>
@@ -14453,56 +14452,24 @@ a.anchor-link {
     </script>
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>A version of this notebook may be run online via Google Colab at <a href="https://tinyurl.com/rxd-circadian">https://tinyurl.com/rxd-circadian</a> (make a copy or open in playground mode).</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">neuron</span>
-<span class="n">neuron</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;&#39;</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -14520,16 +14487,16 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2>Load libraries</h2><p>As usual, we'll want NEURON's h library and its standard run system. NEURON's crxd and rxd modules are generally interchangable, and while that is true here, for performance reasons, we strongly recommend using <tt>crxd</tt> here.</p>
+<h2>Load libraries</h2><p>As usual, we'll want NEURON's h library and its standard run system as well as rxd.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">neuron</span> <span class="kn">import</span> <span class="n">h</span><span class="p">,</span> <span class="n">crxd</span> <span class="k">as</span> <span class="n">rxd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">neuron</span> <span class="kn">import</span> <span class="n">h</span><span class="p">,</span> <span class="n">rxd</span>
 <span class="n">h</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="s1">&#39;stdrun.hoc&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -14546,7 +14513,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
 
 
 
@@ -14570,10 +14537,10 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 
      </div>
@@ -14584,23 +14551,16 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2>Units</h2><p>Recall NEURON measures concentrations in mM and time in ms. Leloup et al., 1999, however expresses concentration in nM and time in hours. We could ignore the unit inconsistency and NEURON would still be able to run the simulation, however if we did so, this could cause problems for interacting with other NEURON mechanisms. To avoid this problem, we define nM and hour in terms of NEURON's base units and include the units when specifying parameter values:</p>
+<h2>Units</h2><p>Recall NEURON measures concentrations in mM and time in ms. Leloup et al., 1999, however expresses concentration in nM and time in hours. We could ignore the unit inconsistency and NEURON would still be able to run the simulation, however if we did so, this could cause problems for interacting with other NEURON mechanisms. To avoid this problem, we use the <code>nM</code> and <code>hour</code> units from <code>neuron.units</code> in addition to our usual <code>mV</code> for initializing the membrane potential:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># (In NEURON 7.7+, we could just do &quot;from neuron.units import nM, hour&quot;)</span>
-
-<span class="n">mM</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">msec</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">nM</span> <span class="o">=</span> <span class="mf">1e-6</span> <span class="o">*</span> <span class="n">mM</span>
-<span class="n">sec</span> <span class="o">=</span> <span class="mf">1e3</span> <span class="o">*</span> <span class="n">msec</span>
-<span class="n">minute</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="n">sec</span>
-<span class="n">hour</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="n">minute</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">neuron.units</span> <span class="kn">import</span> <span class="n">nM</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">mV</span>
 </pre></div>
 
      </div>
@@ -14617,7 +14577,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">declare_parameters</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -14652,30 +14612,6 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Beginning in NEURON 7.7, it is possible to declare a Vector and set it to record from a variable in a single line; we duplicate this functionality for older versions of NEURON using the following:</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">recorder</span><span class="p">(</span><span class="n">ptr</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;return a vector that records the pointer&#39;&#39;&#39;</span>
-    <span class="n">vec</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span>
-    <span class="n">vec</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">vec</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Feel free to reuse these functions in your own code if you find them helpful.</p>
 
 </div>
@@ -14688,7 +14624,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cell</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Section</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;cell&#39;</span><span class="p">)</span>
@@ -14711,7 +14647,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">declare_parameters</span><span class="p">(</span>
@@ -14770,7 +14706,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">declare_species</span><span class="p">(</span>
@@ -14801,7 +14737,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">MTtranscription</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="n">MT</span><span class="p">,</span> <span class="n">vsT</span> <span class="o">*</span> <span class="n">KIT</span> <span class="o">**</span> <span class="n">n</span> <span class="o">/</span> <span class="p">(</span><span class="n">KIT</span> <span class="o">**</span> <span class="n">n</span> <span class="o">+</span> <span class="n">CN</span> <span class="o">**</span> <span class="n">n</span><span class="p">))</span>
@@ -14821,8 +14757,8 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 <span class="n">P2degradation</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="n">P2</span><span class="p">,</span> <span class="o">-</span><span class="n">kd</span> <span class="o">*</span> <span class="n">P2</span> <span class="o">-</span> <span class="n">vdP</span> <span class="o">*</span> <span class="n">P2</span> <span class="o">/</span> <span class="p">(</span><span class="n">KdP</span> <span class="o">+</span> <span class="n">P2</span><span class="p">))</span>
 <span class="n">P0toP1</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">P0</span><span class="p">,</span> <span class="n">P1</span><span class="p">,</span> <span class="n">V1P</span> <span class="o">*</span> <span class="n">P0</span> <span class="o">/</span> <span class="p">(</span><span class="n">K1P</span> <span class="o">+</span> <span class="n">P0</span><span class="p">),</span> <span class="n">V2P</span> <span class="o">*</span> <span class="n">P1</span> <span class="o">/</span> <span class="p">(</span><span class="n">K2P</span> <span class="o">+</span> <span class="n">P1</span><span class="p">),</span> <span class="n">custom_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">P1toP2</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">,</span> <span class="n">V3P</span> <span class="o">*</span> <span class="n">P1</span> <span class="o">/</span> <span class="p">(</span><span class="n">K3P</span> <span class="o">+</span> <span class="n">P1</span><span class="p">),</span> <span class="n">V4P</span> <span class="o">*</span> <span class="n">P2</span> <span class="o">/</span> <span class="p">(</span><span class="n">K4P</span> <span class="o">+</span> <span class="n">P2</span><span class="p">),</span> <span class="n">custom_dynamics</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">P2T2toC</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">P2</span> <span class="o">+</span> <span class="n">T2</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">k3</span><span class="p">,</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>  <span class="c1"># the 0+ works around a bug prior to NEURON 7.7</span>
-<span class="n">CtoCN</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">CN</span><span class="p">,</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">k1</span><span class="p">,</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span>  <span class="c1"># the 0+ works around a bug prior to NEURON 7.7</span>
+<span class="n">P2T2toC</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">P2</span> <span class="o">+</span> <span class="n">T2</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="n">k4</span><span class="p">)</span>
+<span class="n">CtoCN</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Reaction</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">CN</span><span class="p">,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">)</span>
 <span class="n">Cdegradation</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="o">-</span><span class="n">kdC</span> <span class="o">*</span> <span class="n">C</span><span class="p">)</span>
 <span class="n">CNdegradation</span> <span class="o">=</span> <span class="n">rxd</span><span class="o">.</span><span class="n">Rate</span><span class="p">(</span><span class="n">CN</span><span class="p">,</span> <span class="o">-</span><span class="n">kdN</span> <span class="o">*</span> <span class="n">CN</span><span class="p">)</span>
 </pre></div>
@@ -14847,10 +14783,10 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">recorder</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">_ref_t</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">_ref_t</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14867,15 +14803,15 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mpvec</span> <span class="o">=</span> <span class="n">recorder</span><span class="p">(</span><span class="n">MP</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
-<span class="n">cnvec</span> <span class="o">=</span> <span class="n">recorder</span><span class="p">(</span><span class="n">CN</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
-<span class="n">p0vec</span> <span class="o">=</span> <span class="n">recorder</span><span class="p">(</span><span class="n">P0</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
-<span class="n">p1vec</span> <span class="o">=</span> <span class="n">recorder</span><span class="p">(</span><span class="n">P1</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
-<span class="n">p2vec</span> <span class="o">=</span> <span class="n">recorder</span><span class="p">(</span><span class="n">P2</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
-<span class="n">cvec</span> <span class="o">=</span> <span class="n">recorder</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mpvec</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">MP</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
+<span class="n">cnvec</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">CN</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
+<span class="n">p0vec</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">P0</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
+<span class="n">p1vec</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">P1</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
+<span class="n">p2vec</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">P2</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
+<span class="n">cvec</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">Vector</span><span class="p">()</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_ref_concentration</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14897,10 +14833,10 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">h</span><span class="o">.</span><span class="n">finitialize</span><span class="p">(</span><span class="o">-</span><span class="mi">65</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">h</span><span class="o">.</span><span class="n">finitialize</span><span class="p">(</span><span class="o">-</span><span class="mi">65</span> <span class="o">*</span> <span class="n">mV</span><span class="p">)</span>
 <span class="n">h</span><span class="o">.</span><span class="n">CVode</span><span class="p">()</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">h</span><span class="o">.</span><span class="n">continuerun</span><span class="p">(</span><span class="mi">72</span> <span class="o">*</span> <span class="n">hour</span><span class="p">)</span>
 </pre></div>
@@ -14918,7 +14854,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
 
@@ -14942,13 +14878,13 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pt</span> <span class="o">=</span> <span class="p">(</span><span class="n">p0vec</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">()</span> <span class="o">+</span> <span class="n">p1vec</span> <span class="o">+</span> <span class="n">p2vec</span> <span class="o">+</span> <span class="n">cvec</span> <span class="o">+</span> <span class="n">cnvec</span><span class="p">)</span> <span class="o">/</span> <span class="n">nM</span>
-<span class="n">mp</span> <span class="o">=</span> <span class="n">mpvec</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">()</span> <span class="o">/</span> <span class="n">nM</span>
-<span class="n">cn</span> <span class="o">=</span> <span class="n">cnvec</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">()</span> <span class="o">/</span> <span class="n">nM</span>
-<span class="n">t_in_hours</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">()</span> <span class="o">/</span> <span class="n">hour</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pt</span> <span class="o">=</span> <span class="p">(</span><span class="n">p0vec</span> <span class="o">+</span> <span class="n">p1vec</span> <span class="o">+</span> <span class="n">p2vec</span> <span class="o">+</span> <span class="n">cvec</span> <span class="o">+</span> <span class="n">cnvec</span><span class="p">)</span> <span class="o">/</span> <span class="n">nM</span>
+<span class="n">mp</span> <span class="o">=</span> <span class="n">mpvec</span> <span class="o">/</span> <span class="n">nM</span>
+<span class="n">cn</span> <span class="o">=</span> <span class="n">cnvec</span> <span class="o">/</span> <span class="n">nM</span>
+<span class="n">t_in_hours</span> <span class="o">=</span> <span class="n">t</span> <span class="o">/</span> <span class="n">hour</span>
 </pre></div>
 
      </div>
@@ -14965,7 +14901,7 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -15009,20 +14945,6 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 </body>
 
@@ -15041,8 +14963,8 @@ Neurospora. Journal of biological rhythms, 14(6), 433-448.
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="degradable_buffer.html" class="btn btn-neutral float-right" title="degradable_buffer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="Restricting%20reactions%20to%20certain%20sections.html" class="btn btn-neutral float-left" title="Restricting reactions to certain sections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="combining%20currents%20from%20mod%20files%20with%20rxd.html" class="btn btn-neutral float-right" title="combining currents from mod files with rxd" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="calcium%20waves.html" class="btn btn-neutral float-left" title="calcium waves" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

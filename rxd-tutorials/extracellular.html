@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="initialization" href="initialization.html" />
+    <link rel="next" title="ip3-demo" href="ip3-demo.html" />
     <link rel="prev" title="degradable_buffer" href="degradable_buffer.html" /> 
 </head>
 
@@ -97,16 +97,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../hoc/index.html">NEURON HOC documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Python tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Python RXD tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Calcium%20Waves.html">Calcium Waves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Changing%20initial%20conditions%20and%20parameters.html">Changing initial conditions and parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Combining%20currents%20from%20mod%20files%20with%20rxd.html">Combining currents from mod files with rxd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Reaction-Diffusion%20tutorial.html">Reaction-Diffusion tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Restricting%20reactions%20to%20certain%20sections.html">Restricting reactions to certain sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic-initialization.html">basic-initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calcium%20waves.html">calcium waves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="circadian.html">circadian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combining%20currents%20from%20mod%20files%20with%20rxd.html">combining currents from mod files with rxd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="degradable_buffer.html">degradable_buffer</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">extracellular</a></li>
-<li class="toctree-l2"><a class="reference internal" href="initialization.html">initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ion-channels.html">ion-channels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ip3-demo.html">ip3-demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="thresholds.html">thresholds</a></li>
 </ul>
@@ -14500,7 +14499,7 @@ We have expanded the capabilities the NEURON reaction diffusion module to suppor
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(&#39;c91662.swc&#39;, &lt;http.client.HTTPMessage at 0x7f501c5da040&gt;)</pre>
+<pre>(&#39;c91662.swc&#39;, &lt;http.client.HTTPMessage at 0x7f58e90dd040&gt;)</pre>
 </div>
 
 </div>
@@ -16845,10 +16844,10 @@ A4hPXqg0oLLINh7IFlO1Jpc+jMyhsuh6ONzBvsEzMfl+LfxZWxjLSgzjHzSR999GgjZCbrghSjPN
 GIXxsBb6gB5sv+XNeKBq+3JMd/hmA1X+RzXpDAuadOsmFf+ZGX/OjlbDDYEoTVglQ75dIdiXwoA4
 SyoKPT/+BcIQGTRAe1nLmgs0Nqas1VF37qR1G+Bz844+jwt7+f5UQnOgJW3+urc3eigRjUghk92X
 mKRyorKTEFCJ7fy8ZiRD1pgAAAATAZ96akX/ABHV9ODtqnAr1umeGAAAAR5Bm35J4Q8mUwIR//3h
-ACwW/rIsS5wlcnT9e3eHYLvwIL5+8IfVuAJZd1BPBr18u+FoPttcWFHKwOdXZPCT3fbpsw6rsB1C
-xAJgFaoGzLsmVKXfseqDkFd1saOU2oraiouZ/0S06sJ5coiin9LOXHRLYa9zS81tBZ0GV3FZIhHD
-bhgnutpvVGZv4prxqla/+kgqq8VYje4v+/Z/JzmT40LEOr4xAFfuNBoIkKHHKkBZFwkOhCLL4xSX
-LbZqOYMhsscD2H20BoYQZxu34bSteY9EEyEESzwAq8+tivsm0vbCvhvQFbAyhofOiWdyMBRQsfJN
+ACwW/rIsS5wlcnT9e3eHYLvwIL5+8IfVuAJZd1BPBr18u+FoPttcWFHKwOdXZPCT3fbklEHmS5kg
+36CYcWqBszfhNSl37Hqg5BXdbGjlNut2oqLmf9EtOrCeXKRIp/Szlx0S2Gvc0vNbQWdBldxWSIRw
+24YJ7rab1Rmb+KdqfCMfVpSrKvFWI4IRrvxZGkCa+NCyoaKMQBX7jQaCJCiLrUvWRcJDoVh2R9yY
+t9s1HMHiRAsD2H20COO0ThmAVccNplmaCp9kSzwAq8+tivsm0vbCvhvQFbAyhofOiWdyMBRQsfJN
 8DVDf8Gy8rbJd1aJpqhaK8FTj/hIm++TP5LqkIQju70KhnR9sXPW0eCeICiBAAAAJEGfnEURPF8C
 KrwFcNWjAs3ZDdAMXiOCquNnsir7zPf+3wQYsAAAAA4Bn71qRf8AC1U7H1OApgAAAK5Bm6BJqEFo
 mUwU8I/94QBaPY+R1Qr35g6E/x9HIiqHTkhtfJHmFyP+KHIAkb1UQg9LxxW4Q4NORTPq6IFfd2QS
@@ -17259,7 +17258,7 @@ We can also record from the extracellular concentration in the same way other NE
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7f4ff76a04c0&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7f58c41b94c0&gt;]</pre>
 </div>
 
 </div>
@@ -20619,7 +20618,7 @@ The volume faction and tortuosity of the extracellular space can also vary with 
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="initialization.html" class="btn btn-neutral float-right" title="initialization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ip3-demo.html" class="btn btn-neutral float-right" title="ip3-demo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="degradable_buffer.html" class="btn btn-neutral float-left" title="degradable_buffer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

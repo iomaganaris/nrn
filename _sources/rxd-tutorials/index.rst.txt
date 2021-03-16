@@ -5,15 +5,14 @@ Python RXD tutorials
 .. toctree::
    :maxdepth: 2
 
-   Calcium Waves
    Changing initial conditions and parameters
-   Combining currents from mod files with rxd
    Reaction-Diffusion tutorial
    Restricting reactions to certain sections
+   basic-initialization
+   calcium waves
    circadian
+   combining currents from mod files with rxd
    degradable_buffer
    extracellular
-   initialization
-   ion-channels
    ip3-demo
    thresholds
