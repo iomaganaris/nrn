@@ -264,12 +264,14 @@ from source.</p>
 <p>Currently, we are supporting two build systems:</p>
 <ul class="simple">
 <li><a class="reference external" href="#build-cmake">CMake</a> (<strong>recommended</strong>)</li>
-<li><a class="reference external" href="#build-autotools">Autotools</a> (legacy, minimum support)</li>
+<li><a class="reference external" href="#build-autotools">Autotools</a> (legacy, minimum support - <strong>will be DROPPED in the next release</strong>)</li>
 </ul>
-<p>Starting with the 8.0 release, we recommend users to use CMake as the primary build system for NEURON.
+<p>Note that starting with the 8.0 release, CMake is used as the primary build system for NEURON.
 We would be grateful for any feedback or issues you encounter using the CMake-based build system.
-Please <a class="reference external" href="https://github.com/neuronsimulator/nrn/issues">report any issue here</a> and we will be happy to help. In addition to the instructions below, you can find up to date build scripts for different platforms in <a class="reference external" href="https://github.com/neuronsimulator/nrn-build-ci#scheduled-ci-builds-for-neuron">nrn-build-ci</a> repository.</p>
-<p><strong>If you are using autotools, we highly recommend switching to CMake.</strong></p>
+Please <a class="reference external" href="https://github.com/neuronsimulator/nrn/issues">report any issue here</a> and we will be
+happy to help.
+In addition to the instructions below, you can find up to date build scripts for different platforms in <a class="reference external" href="https://github.com/neuronsimulator/nrn-build-ci#scheduled-ci-builds-for-neuron">nrn-build-ci</a> repository.</p>
+<p><strong>If you are using autotools, we strongly recommend switching to CMake as of now.</strong></p>
 <div class="section" id="install-build-dependencies">
 <h2>Install Build Dependencies<a class="headerlink" href="#install-build-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>In order to build NEURON from source, the following packages must be available:</p>
