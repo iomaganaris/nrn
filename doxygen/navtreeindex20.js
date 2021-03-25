@@ -1,6 +1,5 @@
 var NAVTREEINDEX20 =
 {
-"class_path_value.html#a24e9ac14363759d80ab8995779069187":[3,0,319,3],
 "class_path_value.html#a30b97b42d0f42359f691673530ac23f1":[3,0,319,0],
 "class_path_value.html#a587015e61e88ef8b9952ea624b9e1cb4":[3,0,319,1],
 "class_path_value.html#a7e4448a45e375139a1d75aa0cadc905c":[3,0,319,5],
@@ -249,5 +248,6 @@ var NAVTREEINDEX20 =
 "class_random_integer.html#af7fd7ca1a4cdce7a53345e9eaac51c2f":[3,0,347,19],
 "class_random_play.html":[3,0,348],
 "class_random_play.html#a29847f70834714b982762be1e8ef7a94":[3,0,348,3],
-"class_random_play.html#a5ff7633db7da256961814582ab6ea8c0":[3,0,348,0]
+"class_random_play.html#a5ff7633db7da256961814582ab6ea8c0":[3,0,348,0],
+"class_random_play.html#a8d3b17182f25f0f77d78c3e70f91a446":[3,0,348,1]
 };

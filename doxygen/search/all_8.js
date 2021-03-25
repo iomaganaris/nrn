@@ -58,6 +58,7 @@ var searchData=
   ['hborder',['HBorder',['../_inter_views_2__defines_8h.html#adf27dcf5df02f7fa4d06968d3c719be8',1,'_defines.h']]],
   ['hbox',['HBox',['../_inter_views_2__defines_8h.html#a956aa1cbca2fa9b617ade2c7e7367c03',1,'_defines.h']]],
   ['hbox_5freg',['HBox_reg',['../occlass_8h.html#a65ba83bda7bdc24c31df3aa1ef4dd189',1,'HBox_reg():&#160;occlass.h'],['../ocbox_8cpp.html#a93e268f6c0d46164e381c05d07a18020',1,'HBox_reg():&#160;ocbox.cpp']]],
+  ['hc_5f',['hc_',['../class_s_t_e_transition.html#a8174e808bcbf59256dcb2dcc97a118cc',1,'STETransition']]],
   ['hc_5frestore_5f',['hc_restore_',['../hoccontext_8h.html#af717f57bb5554a1ba779be1be054e994',1,'hoccontext.h']]],
   ['hc_5fsave_5fand_5fset_5fto_5ftop_5f',['hc_save_and_set_to_top_',['../hoccontext_8h.html#a4ad32fa007dccdcbd14846f43d211cb2',1,'hoccontext.h']]],
   ['hcons',['hcons',['../ocbox_8cpp.html#af720f2bc0892f680f102a464ce116694',1,'ocbox.cpp']]],

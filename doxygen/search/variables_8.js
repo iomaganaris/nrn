@@ -12,6 +12,7 @@ var searchData=
   ['have_5fqthresh_5f',['have_qthresh_',['../class_pre_syn_save.html#a3b568f24184f2474d98ce7afcfac5927',1,'PreSynSave']]],
   ['havecachednormal',['haveCachedNormal',['../class_normal.html#a92a2457abdfc4185515f9272ff1880d3',1,'Normal']]],
   ['hbox_5freg',['HBox_reg',['../occlass_8h.html#a65ba83bda7bdc24c31df3aa1ef4dd189',1,'occlass.h']]],
+  ['hc_5f',['hc_',['../class_s_t_e_transition.html#a8174e808bcbf59256dcb2dcc97a118cc',1,'STETransition']]],
   ['hconv',['hConv',['../ddeclnt_8cpp.html#aed1dfd4816a13b9e20712ad7049e1fcc',1,'ddeclnt.cpp']]],
   ['hconvadmin',['hConvAdmin',['../ddeclnt_8cpp.html#ab9d418002ab6948fb8eaaa3cf229e08b',1,'ddeclnt.cpp']]],
   ['hconvapp',['hConvApp',['../ddesrvr_8cpp.html#aa5c1753bfef14b130ed94147bfb1e96f',1,'ddesrvr.cpp']]],
